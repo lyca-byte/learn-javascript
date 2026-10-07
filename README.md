@@ -597,3 +597,96 @@ Control flow statements are backbone in programming for:
 - **Branching**: To exit loops or skip iterations (`break`, `continue`).
 - **Looping**: To repeat tasks (`for`, `while`, `do while`).
 - **Switching**: To handle multiple conditoins  effectively (`switch`).
+
+# Operator
+JavaScript operators are symbol or keywords used to perform operations on values and variables. They are the build block of JavaScript expressions and can manipulate data in various ways.
+
+There are various operators supported by JavaScript:
+1. JavaScript Arithmetic Operators  
+Arithmetic Operators perform mathematical calculations like addition, subtraction, multiplication, etc.
+```javascript
+const sum = 5 + 3; // Addition
+const diff = 10 - 2; // Subtraction
+const p = 4 * 2; // Multiplication
+const q = 8 / 2; // Division
+console.log(sum, diff, p, q);
+```
+
+- + adds two numbers.
+- - subtracts the second number from the first.
+- * multiplies two numbers.
+- / divides the first number by the second.
+
+2. JavaScript Assignment Operators  
+Assignment operators are used to assign values to variables. They can also perform operations like addition or multiplication while assigning the value.
+```javascript
+let n = 10;
+n += 5;
+n *= 2;
+console.log(n);
+```
+
+- = assign a value to a variable.
+- += adds and assigns the result to the variable.
+- *= multiplies and assigns the result to the variable.
+
+3. JavaScript Comparison Operators  
+Comparison operators compare two values and return a boolean (true or false). They are useful for making decisions in conditional statements.
+```javascript
+console.log(10 > 5);
+console.log(10 === "10");
+```
+
+- > checks if the left values is greater than the right.
+- === checks for strict equality (both type and value).
+- Other operators include <, <=, >=, and !==.
+
+4. JavaScript Logical Operators  
+Logical operators are mainly used to perform the logical operatons that determine the equality or difference between the values.
+```javascript
+const a = true, b = false;
+console.log(a && b)
+console.log(a || b)
+```
+
+- && returns true if both operands are true.
+- || returns true if at least one operand is true.
+- ! negates the boolean value.
+
+5. JavaScript Bitwise Operators  
+Bitwise operators perform operations on binary representations of numbers.
+```javascript
+const res = 5 & 1
+console.log(res)
+```
+
+- & performs AND operation on each bit.
+- | performs OR operation on each bit.
+- ^ performs XOR (exclusive OR) on each bit.
+- ~ inverts all bits (NOT operator).
+- << shifts bits to the left.
+- [>>] shifts bits to the right (with sign).
+- [>>>] shifts bits to the right (without sign).
+
+6. JavaScript Ternary Operator    
+The ternary operator is a shorthand for conditional statements. It takes three operands.
+```javascript
+const age=18
+const status = age >= 18 ? "Adult" : "Minor"
+console.log(status)
+```
+
+> condition ? expression 1 : expression 2
+>> Evaluates expressioin 1 if the condition is true, otherwise evaluates expression 2
+
+7. JavaScript Comma Operator  
+Comma operator mainly evaluates its operands from left to right sequentially and returns the value of the rightmost operand.
+```javascript
+let n1, n2
+const res=(n1 = 1, n2 = 2, n1+n2)
+console.log(res)
+```
+
+- The final result of the expression is the rightmost value.
+
+8. JavaScript Unary Operators
