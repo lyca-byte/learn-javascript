@@ -689,4 +689,167 @@ console.log(res)
 
 - The final result of the expression is the rightmost value.
 
-8. JavaScript Unary Operators
+8. JavaScript Unary Operators  
+Unary operators operate on single operand (e.g., increment, decrement).
+```javascript
+let x = 5
+
+console.log(+x)
+console.log(-x)
+
+console.log(++x)
+console.log(--x)
+
+console.log(!x)
+```
+
+- + converts a value to a number
+- - negates a value (changes it sign).
+- ++ increments a value by 1.
+- -- decrements a value by 1.
+- ! convers to boolean and the reverses the value (true ↔ false).
+- typeof returns the data type of a variable.
+- delete removes a property from an object.
+
+9. JavaScript Relational Operators  
+JavaScript relational operators are used to compare its operands and determine the relationship between them. They return a Boolean value (true or false) based on the comparison result.
+```javascript
+const obj = {length: 10}
+console.log("length" in obj)
+console.log([] instancceof Array)
+```
+
+- `in` checks if a property exist in an object
+- `instanceof` checks if an object is an instance of a constructor
+
+10. JavaScript BigInt operators  
+BigInt operators allow calculations with numbers beyond the safe integer range.
+```javascript
+const big1 = 123456789012345678901234567890n;
+const big2 = 987654321098765432109876543210n;
+console.log(big1 + big2);
+```
+
+- Operations like addition, subtraction, and multiplication work with BigInt.
+- Use n suffix to denote BigInt literals.
+
+11. JavaScript String Operators  
+JavaScript string operators include concatenation (+) and concatenation assignment (+=), used to join strings or combine string with other data types.
+```javascript
+const s="Hello" + " " + "World"
+console.log(s)
+```
+
+- $\text{+}$ concatenates strings
+- $\text{+=}$ appends to an existing string.
+
+12. JavAScript Chaining Operator(?.)  
+The optional chaining operator allows sade access to deply nested properties without throwing errors if the property doesn't exist.
+```javascript
+const obj={name:"Aman", address: {city: "Delji"}}
+console.log(obj.address?.city)
+console.log(obj.contact?.phone)
+```
+
+Output:  
+```bash
+Delhi
+undefined
+```
+
+- ?. safely accesses a property or method.
+- Returns undefined if the property doesn't exist.
+
+# Scope of Variables in JavaScript
+Scope in JAvaScript defines where a variable can be accessed or used within a program. It controls the visibility and lifetime of variables across different parts of the code.
+- Determines the accessibility of variables in different parts of the program.
+- Helps prevent conflict by restricting variable usage to specific areas.
+- Improves code organization and readability.
+- Defines the lifetime of variables during program execution.
+- Main types include **global scope**, **local (function) scope**, and **block scope**.
+
+1. Global and Local Scope  
+- Global Scope  
+A global variiable refers to a variable that is declared outside any function or block, so it can be used anywhere in the program, both inside functions and in the main code.
+```javascript
+// Global Variable accessed from within a function
+const x = 10
+function fun1(){
+    console.log(x)
+}
+fun1()
+```
+
+The variable x is declared in the global scope and can be accessed inside functions. However, global scope behavior may vary depending on the execution environment (e.g., browser vs module)
+
+- Local Scope  
+A local variable is a variable declared within a function, making it accessible only inside that function. It cannot be used outside the function. Variables declared inside a block using `let` or `const` are block-scoped.
+```javascript
+function fun2(){
+    // This variable is local to fun2() and cannot be accessed outside this function
+    let x = 10
+    console.log(x)
+}
+
+fun2()
+```
+
+Here, the code defines a function `fun2` with a local variable `x`, which is accessible only inside the function, and prints its value when the function is called.
+- Before ES6 (released in 2015), JavaScript primarily used `var` for variable declarations. `var` is function-scoped and when declared outside a function, become globally scoped (in classic scripts).
+- ES6 introduced `let` and `const`, which are block-scoped and help avoid issues such as accidental global variables and unintended redeclarations
+
+2. Block and Lexical Scope
+- Block Scope  
+Block scope in JavaScript means variables declared with `let` or `const` inside {} are accessible only within that block, and accessing them before declaration (TDZ) causes a ReferenceError
+> Variables declared with `var` do not have block scope. If declared inside a function, they are accessible throughout that function regardless of block such as `if` statements or loops. IN classic scripts, a `var` declared outside any function become globally scoped. In ES modules, top-level `var` is module-scoped.
+```javascript
+{
+    // var can accessible inside & outside the block scope
+    var x = 10
+
+    // let, const accessible only inside the block scope
+    const y = 20
+    let z = 30
+}
+
+console.log(x)
+```
+
+We have successfuully accessed the variable with the `var` keyword because `var` does not have a block scope.
+
+- Lexical Scope  
+Lexical scope means a function can access variables from the scope in which it was defines. The scope is determined by the code structure, not by where the function is called.
+```javascript
+function func1(){
+    const x = 10
+
+    function func2(){
+        const y = 20
+        console.log(`${x} ${y}`)
+    }
+
+    func2()
+}
+
+func1()
+```
+> This code demonstrates *lexical scope*, where `func2` accesses the variable `x` from `func1` and prints "10 20".
+
+- Module Scope  
+Module scope refers t variables and functions that are accessible only within a specific JavaScript module. It helps keep code organized and prevents variabels from affecting the global scope.
+```javascript
+//math.js (module file)
+export const number = 10
+export function add(a, b){
+    return a + b
+}
+```
+
+```javascript
+import {number, add} from "./math.js"
+console.log(number)
+console.log(add(5, 3))
+```
+
+- math.js has variables and funcctions inside its module scope
+- They are only accessible in other files when we use **export** and **import**.

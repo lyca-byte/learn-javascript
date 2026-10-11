@@ -1,0 +1,42 @@
+body{
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f4f8;
+}
+
+.container{
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.counter{
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+button{
+    padding:10px 20 px;
+    font-size: 1em;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.clicks{
+    font-size: 1.1em;
+    margin-top:10px;
+}
+
+/* 
+- The body is styled to center the application on the screen with a light background
+- The .container styles give the app a card-like appearance with a white background and rounded corners.
+- .counter class increases the font size for better visibility of the counter value.
+- The button styles add padding, and margin
+- The .clicks class styles the click count display below the buttons.
+*/

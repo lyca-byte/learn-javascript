@@ -1,0 +1,28 @@
+<html>
+<link rel="stylesheet" href="style.css"
+    <head>
+        <body>
+            <div class="container">
+                <div class="counter">
+                    <p id="count">0</p>
+                </div>
+                <div>
+                    <button onclick="dec()">Decrement</button>
+                    <button onclick="inc()">Increment</button>
+                </div>
+                <div class="clicks">
+                    <p>Clicks on Increment: <span id="incCount">0</span></p>
+                    <p>Clicks on Decrement: <span id="decCount">0</span></p>
+            </div>
+        </div>
+        <script src="logic.js" defer></script>
+    </body>
+</head>
+</html>
+
+<!-- 
+- The <div> with class container acts as a wrapper for the application.
+- <p> with id="count" displays the current counter value.
+- Two <button> elements call the inc() and dec() functions when clicked to modify the counter.
+- <span> elemnts inside <p> tags display the click counts for increment and decrement actions 
+-->
