@@ -853,3 +853,138 @@ console.log(add(5, 3))
 
 - math.js has variables and funcctions inside its module scope
 - They are only accessible in other files when we use **export** and **import**.
+
+# JavaScript Hoisting
+**Hoisting** refers to the behavior where JavaScript moves the declarations of variables, functions, and classes to the top of their scope during the compilation phase. This can sometimes lead to surprising results, especially when using `var`, `let`, `const`, or function expressions.
+![alt text](/src/image-11.png)
+
+- Hoisting applies to variable and function declarations
+- Initializations are not hoisted, they are only declarations.
+- `var` variables are hoisted with undefined, while `let` and `const` are hoisted but remain in the Temporal Dead Zone until initialized.
+
+Before learning more about hoisting, it's important first to understand the **Temporal Dead Zone**.
+
+## Temporal Dead Zone (TDZ)
+The Temporal Dead Zone is the period in JavaScript between entering a scope and the initialization of variables declared with `let` or `const`, during which accessing them results in an error.
+- Variables declared `let` and `const` are hoisted but not initialized.
+- Accesssing these variables before their declaration throws a ReferenceError.
+- Initialization ocurs only when execution reaches the declaration line.
+- TDZ exists only within the scope where the variable is declared.
+- It applies only to `let` and `const`, not to `var` (which is initialized as undefined)
+```javascript
+hello() //TypeError: hello is not a function
+var hello=function(){
+    console.log("Hi")
+}
+```
+> Note: The variable hello is hoisted, but it is not initialized until the assignment line is reached since it holds a function expression. Thus, calling `hello()` before its initialization throws a TypeError.
+
+## Types of Hoisting
+Hoisting in JavaScript refers to moving declarations to the top of their scope before code execution.
+1. Variable Hoisting with `var`  
+When you use `var` to declare a variable, the declaration is hoisted to the top, but its value not assigned until the code execution reaches the variable's initialization. This results in the variable beign assigned undefined during the hoisting phase. 
+```javascript
+console.log(a) // undefined
+var a=5
+```
+The output is:
+```text
+undefined
+```
+> ***Note***: The declaration `var` is a hoisted to the top, but `a` is initialized with undefined. Hence, logging results in undefined.
+
+2. Variable Hoisting with `let` and `const`  
+Unlike `var`, `let` and `const`are also hoisted, but they remain in a Temporal Dead Zone (TDZ) from the start of the block until their declaration is encountered. Accessing them before their declaration will throw a ReferenceError.
+```javascript
+console.log(b) //ReferenceError: Cannot access `b` before initialization
+let b=10
+```
+> ***Note***: The variable is hoisted, but it's in the Temporal Dead Zone (TDZ) until the declaration line is executed.
+
+3.  Function Declaration Hoisting  
+Function declarations are hoisted with both their name and the function body. This means the function can be called before its definition in the code.
+```javascript
+greet()
+function greet(){
+    console.log("Hello")
+}
+```
+> ***Note:*** The function declarationi is hoisted, and the entire function definition is available before its position in the code.
+
+4. Function Expression Hoisting  
+Function expressions are treated like variable declarations. The variable itself is hoisted, but the function expression is not assigned until the line of execution. This means calling the function before its assignment will result in an error.
+```javascript
+hello()
+var hello=function(){
+    console.log("hi")
+}
+```
+> ***Note:*** The variable hello is hoisted, but since it's a functioni expression, it's not initialized until the line is executed.
+
+5. Hoisting with `let` and `const` in Functions  
+Variables declared with `let` and `const` inside a function are hoisted to the top of the function's scope, but they remain in the TDZ. This prevents access to them before they initialized.
+```javascript
+function test(){
+    console.log(x) // ReferenceError: Cannot access 'x' before initialization
+    let x = 50
+}
+test()
+```
+> ***Note:*** The variable `x` is hoisted inside the function but cannot be accessed until its declaration line due to the TDZ
+
+6. Hoisiting with Classes  
+Classes are hoisted, but they cannot be accessed before they are declared, resulting in a ReferenceError.
+```javascript
+const obj=new MyClass()
+class MyClass{
+    constructor(){
+        this.name="Lappy Dumby"
+    }
+}
+```
+> ***Note:*** Although the class MyClass is hoisted, it cannot be accessed before its declaration due to the TDZ, which is why the code throws a ReferenceError
+
+7. Re-declaring Variables with `var`  
+With `var`, you can redeclare a variable within the same scope. This is a unique behavior compared to `let` and `const`.
+```javascript
+var a=10
+var a=20 // No error
+console.log(a) // 20
+```
+> ***Note:*** With `var`, the second declaration overwrites the first one without throwing an error
+
+8. Accessing Variables Declared Later in Loops  
+When using `var` in loops, the loop variable is hoisted to the function or global scope, which can cause unexpected behavir. If you use `let`, the variable is block-scoped and behaves as exprected.
+```javascript
+for (var i=0;i<3;i++){
+    setTimeout(function(){
+        console.log(i) // 3, 3, 3
+    }, 100)
+}
+```
+
+9. Using Hoisted Functions with Parameter  
+Function can be hoisted with their parameters, but any parameters passed to the function are still determined by the invocation, not by the hoisting.
+```javascript
+test(10)
+function test(num){
+    console.log(num)
+}
+```
+> ***Note:*** The entire function, including its parameters, is hoisted and available for use before the function's declaration in the code. 
+
+10. Hoisting in Nested Functions
+Hoisting works within nested functions as well. Variables declared with `var` inside a function are hoisted to the top of that function scope.
+```javascript
+function outer(){
+    console.log(a)
+    var a = 5
+    function inner(){
+        console.log(b)
+        var b=10
+    }
+    inner()
+}
+outer()
+```
+> ***Note:*** Both a and b are hoisted within their respective scopes (outer and inner functions), but their valus are not set until the code execution reaches the initialization lines.
